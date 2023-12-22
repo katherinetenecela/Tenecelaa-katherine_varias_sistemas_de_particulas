@@ -10,7 +10,8 @@ function setup() {
 }
 
 function draw() {
-  background(255, 20);
+  // Use the getColor method to get the background color
+  background(s.getColor());
   s.update();
   s.display();
   p.update();

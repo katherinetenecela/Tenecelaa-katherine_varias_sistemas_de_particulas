@@ -1,26 +1,24 @@
 class Particula {
-  constructor(_x, _y, _color) {
+  constructor(_x, _y, _color, _shape) {
     this.pos = createVector(_x, _y);
     this.lifespan = Math.ceil(random(10, 100));
     this.isAlive = true;
-    this.side = Math.ceil(random(3, 15));
+    this.size = Math.ceil(random(3, 15));
     this.color = _color;
+    this.shape = _shape; // Store the shape type (0 for square, 1 for triangle, 2 for circle)
   }
+
   update() {
     this.r = random(100);
 
     if (this.r < 20) {
-      // hacia arriba
-      this.pos.y -= this.side;
+      this.pos.y -= this.size;
     } else if (this.r < 40) {
-      // hacia la derecha
-      this.pos.x += this.side;
+      this.pos.x += this.size;
     } else if (this.r < 80) {
-      // hacia abajo
-      this.pos.y += this.side;
+      this.pos.y += this.size;
     } else {
-      // hacia izquierda
-      this.pos.x -= this.side;
+      this.pos.x -= this.size;
     }
 
     this.lifespan -= 1;
@@ -29,9 +27,26 @@ class Particula {
       this.isAlive = false;
     }
   }
+
   display() {
     fill(this.color);
     stroke(255);
-    square(this.pos.x, this.pos.y, this.side);
+    if (this.shape === 1) {
+      // Triangle
+      triangle(
+        this.pos.x,
+        this.pos.y - this.size,
+        this.pos.x - this.size,
+        this.pos.y + this.size,
+        this.pos.x + this.size,
+        this.pos.y + this.size
+      );
+    } else if (this.shape === 2) {
+      // Circle
+      ellipse(this.pos.x, this.pos.y, this.size * 2, this.size * 2);
+    } else {
+      // Square (default)
+      square(this.pos.x, this.pos.y, this.size);
+    }
   }
 }
