@@ -6,11 +6,11 @@ class Sistema {
     this.colors = [
       color(random(100, 255), random(255), 0),
       color(random(100, 255), random(255), 0),
-    ]; // Use an array for background gradient colors
+    ];
   }
 
   update() {
-    this.t += 0.005; // Increase the increment value for a slower animation
+    this.t += 0.005;
     this.pos.x = map(noise(this.t), 0, 1, 0, width);
     this.pos.y = map(noise(this.t + 10), 0, 1, 0, height);
     this.p = new Particula(
@@ -18,8 +18,7 @@ class Sistema {
       this.pos.y,
       lerpColor(this.colors[0], this.colors[1], noise(this.t + 20)),
       int(random(3))
-    ); // Pass gradient colors and shape type
-
+    );
     this.ps.push(this.p);
 
     for (let i = 0; i < this.ps.length; i++) {
@@ -37,7 +36,6 @@ class Sistema {
   }
 
   getColor() {
-    // Return a gradient color based on noise
     return lerpColor(this.colors[0], this.colors[1], noise(this.t));
   }
 }

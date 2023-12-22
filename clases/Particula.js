@@ -5,7 +5,7 @@ class Particula {
     this.isAlive = true;
     this.size = Math.ceil(random(3, 15));
     this.color = _color;
-    this.shape = _shape; // Store the shape type (0 for square, 1 for triangle, 2 for circle)
+    this.shape = _shape;
   }
 
   update() {
